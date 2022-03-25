@@ -15,20 +15,20 @@ pipeline {
         
         stage ('Sonar Analysis') {
         	environment{
-        		scannerHome = tool 'SONAR_SCANNER'
-        	}
+                scannerHome = tool 'SONAR_SCANNER'    
+            }
             steps {
-            	withSonarQubeEnv('SONAR_LOCAL'){
-                	sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=3aec06eeba4b617edb7623f693067a3ccc7fcfda -Dsonar.java.binaries=target"
-               }
+                withSonarQubeEnv('SONAR_LOCAL'){
+                    sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=3aec06eeba4b617edb7623f693067a3ccc7fcfda -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"
+                }
             }
         }
 
-        stage ('Quality Gate') {
+        stage ('Quality Gate'){
             steps {
                 sleep(60)
                 timeout(time: 1, unit: 'MINUTES'){
-            	    waitForQualityGate abortPipeline: true
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
