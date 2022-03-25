@@ -19,7 +19,7 @@ pipeline {
         	}
             steps {
             	withSonarQubeEnv('SONAR_LOCAL'){
-                	sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=3aec06eeba4b617edb7623f693067a3ccc7fcfda -Dsonar.java.binaries=target"
+                	sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000  -Dsonar.login=3aec06eeba4b617edb7623f693067a3ccc7fcfda -Dsonar.java.binaries=target"
                }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
         stage ('Quality Gate') {
             steps {
                 sleep(120)
-                timeout(time: 1, unit: 'MINUTES'){
+                timeout(time: 2, unit: 'MINUTES'){
             	    waitForQualityGate abortPipeline: true
                 }
             }
