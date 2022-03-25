@@ -13,7 +13,7 @@ pipeline {
             }
         }
         
-        stage ('Sonar Analysis') {
+        /*stage ('Sonar Analysis') {
         	environment{
         		scannerHome = tool 'SONAR_SCANNER'
         	}
@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        /*stage ('Quality Gate') {
+        stage ('Quality Gate') {
             steps {
           	    waitForQualityGate abortPipeline: true
             }
