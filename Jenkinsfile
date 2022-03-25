@@ -54,22 +54,21 @@ pipeline {
             }
         }
 
-        
-/*
-        stage ('Funcional Test'){
+        /*stage ('Funcional Test'){
             steps {
                 dir('funcional-test') {
                     git branch: 'master', credentialsId: 'github_login', url: 'https://github.com/rodrigofa1305/tasks-funcional-tests'
                     bat 'mvn test'
                 }
             }
-        }
+        }*/
 
+/*
         stage ('Deploy Producao'){
             steps {
                 dir('funcional-test') {
-                    bat 'docker-compose build'
-                    bat 'docker-compose up -d'
+                    sh 'docker-compose build'
+                    sh 'docker-compose up -d'
                 }
             }
         }
