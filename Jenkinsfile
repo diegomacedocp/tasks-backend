@@ -46,7 +46,7 @@ pipeline {
         }
         stage ('Deploy Frontend'){
             steps {
-                dir('frontend') {
+                dir('tasks-frontend') {
                     git branch: 'master', credentialsId: 'github_login', url: 'https://github.com/diegomacedocp/tasks-frontend'
                     sh 'mvn clean package'
                     deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks', war: 'target/tasks.war'
@@ -66,7 +66,7 @@ pipeline {
         stage ('Deploy Producao'){
             steps {
                 /*dir('funcional-test') {*/
-                dir('frontend') {
+                dir('tasks-frontend') {
                     sh 'docker-compose build'
                     sh 'docker-compose up -d'
                 }
