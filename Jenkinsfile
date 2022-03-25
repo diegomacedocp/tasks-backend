@@ -24,15 +24,15 @@ pipeline {
             }
         }
 
-        stage ('Quality Gate') {
-            steps {
-                sleep(60)
-                timeout(time: 1, unit: 'MINUTES'){
-            	    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        
 
+
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+        }
         /*
         stage ('Deploy Backend'){
             steps {
