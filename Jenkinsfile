@@ -13,7 +13,7 @@ pipeline {
             }
         }
         
-        /*stage ('Sonar Analysis') {
+        stage ('Sonar Analysis') {
         	environment{
         		scannerHome = tool 'SONAR_SCANNER'
         	}
@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        stage ('Quality Gate') {
+        /*stage ('Quality Gate') {
             steps {
           	    waitForQualityGate abortPipeline: true
             }
@@ -33,7 +33,7 @@ pipeline {
         
         stage ('Deploy Backend'){
             steps {
-                deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001/')], contextPath: 'task-backend', war: 'target/task-backend.war'
+                deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
         /*stage ('API Test'){
