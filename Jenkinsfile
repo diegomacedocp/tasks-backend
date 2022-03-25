@@ -57,7 +57,7 @@ pipeline {
         /*stage ('Funcional Test'){
             steps {
                 dir('funcional-test') {
-                    git branch: 'master', credentialsId: 'github_login', url: 'https://github.com/rodrigofa1305/tasks-funcional-tests'
+                    git branch: 'master', credentialsId: 'github_login', url: 'https://github.com/diegomacedocp/tasks-funcional-tests'
                     bat 'mvn test'
                 }
             }
@@ -65,7 +65,8 @@ pipeline {
 
         stage ('Deploy Producao'){
             steps {
-                dir('funcional-test') {
+                /*dir('funcional-test') {*/
+                dir('frontend') {
                     sh 'docker-compose build'
                     sh 'docker-compose up -d'
                 }
