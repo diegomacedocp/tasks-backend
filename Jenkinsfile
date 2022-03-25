@@ -63,7 +63,6 @@ pipeline {
             }
         }*/
 
-/*
         stage ('Deploy Producao'){
             steps {
                 dir('funcional-test') {
@@ -72,6 +71,7 @@ pipeline {
                 }
             }
         }
+/*
 
         stage ('HealthCheck'){
             steps {
